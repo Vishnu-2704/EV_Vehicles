@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+
+# Spark
+.sparkStaging/
+spark-warehouse/
+metastore_db/
+*.log
+
+# Spark checkpoints
+**/checkpoint/
+**/checkpoints/
+
+# Generated data
+data/raw/
+data/processed/
+data/output/
+
+# Kafka data
+kafka-data/
+kafka-logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
