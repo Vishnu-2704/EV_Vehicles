@@ -299,6 +299,89 @@ EV_Vehicles/
 └── .gitignore
 ```
 
+## How to Run
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd EV_Vehicles
+```
+
+### 2. Create a Python Virtual Environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Generate Historical EV Charging Data
+
+```bash
+python3 src/data_generation/generate_data.py
+```
+
+This generates:
+
+- Customers
+- Vehicles
+- Charging stations
+- Charging transactions
+
+### 5. Run the Batch Pipeline
+
+Run the batch stages in order:
+
+```bash
+python3 src/batch/bronze_ingestion.py
+python3 src/batch/silver_transformation.py
+python3 src/batch/gold_analytics.py
+```
+
+### 6. Run the Real-Time Streaming Pipeline
+
+Start Apache Kafka and create the topic:
+
+```bash
+kafka-topics.sh --create --topic ev-charging-events --bootstrap-server localhost:9092
+```
+
+Start the Kafka producer:
+
+```bash
+python3 src/streaming/kafka_producer.py
+```
+
+Start the Spark Bronze streaming pipeline:
+
+```bash
+spark-submit \
+  --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.2.0 \
+  src/streaming/spark_kafka_stream.py
+```
+
+Start the Silver streaming pipeline:
+
+```bash
+spark-submit src/streaming/silver_streaming.py
+```
+
+Start the Gold streaming pipeline:
+
+```bash
+spark-submit src/streaming/gold_streaming.py
+```
+
+The streaming pipeline processes events through:
+
+Kafka → Bronze → Silver → Gold
+
 ### Key Analytics
 
 The platform provides analytics for:
