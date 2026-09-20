@@ -240,6 +240,8 @@ The batch data engineering pipeline is integrated with Microsoft Azure services.
   - Top 10 customers by revenue
   - Top 10 vehicles by revenue
 
+  ![EV Charging Analytics Dashboard](powerbi_dashboard.png)
+
 ### Real-Time Cloud Integration
 
 The Kafka and Spark Structured Streaming pipeline is currently implemented and tested locally.
@@ -309,15 +311,14 @@ The platform provides analytics for:
 - Vehicle charging behavior
 - Charging demand
 
-
 ### Future Enhancements
+
 - Deploy Kafka and Spark Structured Streaming to the cloud
 - Integrate real-time streaming data with Azure Data Lake Storage Gen2
 - Extend real-time analytics to cloud-based dashboards
 - Add automated data quality monitoring
 - Add pipeline monitoring and alerting
 - Scale the synthetic dataset to millions of charging transactions
-
 
 ### Technologies
 
